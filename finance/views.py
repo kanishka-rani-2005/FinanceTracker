@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http  import HttpRequest
 from django.views import View
-from .forms import RegisterForm
+from .forms import RegisterForm,TransactionForm,Transaction
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -30,3 +30,25 @@ class RegisterView(View):
 
 
 
+
+class TransactionCreateView(LoginRequiredMixin,View):
+    def get(self,request,*args,**kwargs):
+        form=TransactionForm()
+        return render(request,'finance/transaction_form.html',{'form':form})
+    
+
+    def post(self,request,*args,**kwargs):
+        form=TransactionForm(request.POST) # to get form
+        if form.is_valid():
+            transaction = form.save(commit=False)
+            transaction.user = request.user  
+            transaction.save()
+            return redirect('transaction_add')
+            
+        return render(request, 'finance/transaction_form.html', {'form': form})
+    
+
+class   TransactionListView(LoginRequiredMixin,View):
+    def get(self,request,*args,**kwargs):
+        transaction=Transaction.objects.filter(user=request.user)
+        return render(request,'finance/transaction_list.html',{'transaction':transaction})

@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'finance.apps.FinanceConfig',
-    
+    'widget_tweaks',   
    
 ]
 

@@ -1,5 +1,5 @@
 from django.urls import path,include
-from .views  import RegisterView,Home
+from .views  import RegisterView,Home,TransactionCreateView
 
 
 
@@ -9,4 +9,5 @@ urlpatterns = [
     path('accounts/register/',RegisterView.as_view(),name='register'),
     # built in for login
     path('accounts/',include('django.contrib.auth.urls'),name='login'),
+    path('transaction/',TransactionCreateView.as_view(),name='transaction_add')
 ]
