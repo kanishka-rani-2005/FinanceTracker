@@ -82,6 +82,7 @@
       <ul class="nav-links">
         <li><a href="/">Home</a></li>
         <li><a href="{% url 'transaction_add' %}">Add Transaction</a></li>
+        <li><a href="{% url 'transaction_list' %}">List Transactions</a></li>
 
         {% if user.is_authenticated %}
         <li>
@@ -109,8 +110,20 @@
         {% endif %}
       </ul>
     </nav>
-
-    <!-- Page content can go here -->
+  <section style="padding: 40px; max-width: 800px; margin: 0 auto;">
+    {% if user.is_authenticated %}
+      <h1 style="color: #004d40;">Welcome, {{ user.username }} 👋</h1>
+      <p style="font-size: 1.2em; margin-top: 10px;">
+        This is your personal <strong>Finance Tracker</strong> — a simple web application to help you manage your daily financial transactions.
+        You can add, view, and categorize expenses or income. Stay on top of your money with ease!
+      </p>
+    {% else %}
+      <h1 style="color: #004d40;">Welcome to Finance Tracker</h1>
+      <p style="font-size: 1.1em; margin-top: 10px;">
+        Please <a href="{% url 'login' %}">log in</a> to start tracking your finances.
+      </p>
+    {% endif %}
+  </section>
 
     <script src="" async defer></script>
   </body>

@@ -51,4 +51,5 @@ class TransactionCreateView(LoginRequiredMixin,View):
 class   TransactionListView(LoginRequiredMixin,View):
     def get(self,request,*args,**kwargs):
         transaction=Transaction.objects.filter(user=request.user)
-        return render(request,'finance/transaction_list.html',{'transaction':transaction})
+        return render(request,'finance/transaction_list.html',{'transactions':transaction})
+    

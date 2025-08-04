@@ -100,8 +100,8 @@
         <label for="transaction_type" class="form-label">Type</label>
         <select name="transaction_type" id="transaction_type" class="form-select" required>
           <option value="">Choose...</option>
-          <option value="income" {% if form.transaction_type.value == "income" %}selected{% endif %}>Income</option>
-          <option value="expense" {% if form.transaction_type.value == "expense" %}selected{% endif %}>Expense</option>
+          <option value="Income" {% if form.transaction_type.value == "Income" %}selected{% endif %}>Income</option>
+          <option value="Expense" {% if form.transaction_type.value == "Expense" %}selected{% endif %}>Expense</option>
         </select>
         {% for error in form.transaction_type.errors %}
         <div class="invalid-feedback">{{ error }}</div>
