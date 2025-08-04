@@ -15,13 +15,44 @@
 
     <style>
       body {
-        background: linear-gradient(135deg, #667eea, #764ba2);
-        min-height: 100vh;
+        background: linear-gradient(135deg, #cceeff, #e0f7fa, #d0f0f7, #b2ebf2);
+        background-size: 400% 400%;
+        animation: bgGradient 15s ease infinite;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding-top: 70px;
         display: flex;
         justify-content: center;
-        align-items: center;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        align-items: flex-start;
+        min-height: 100vh;
       }
+
+      @keyframes bgGradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .navbar-custom {
+        background: linear-gradient(to right, #00796b, #004d40);
+      }
+
+      .navbar-brand,
+      .nav-link {
+        color: #fff !important;
+        font-weight: 500;
+      }
+
+      .nav-link:hover {
+        color: #eaffea !important;
+      }
+
       .card {
         border-radius: 1rem;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
@@ -29,34 +60,81 @@
         width: 100%;
         padding: 2rem;
         background-color: white;
+        margin-top: 40px;
       }
+
       .form-control:focus {
-        border-color: #764ba2;
-        box-shadow: 0 0 8px rgba(118, 75, 162, 0.4);
+        border-color: #00796b;
+        box-shadow: 0 0 8px rgba(1, 57, 3, 0.4);
       }
+
       h1 {
-        color: #4b2995;
+        color: #07360bff;
         font-weight: 700;
         margin-bottom: 1.5rem;
         text-align: center;
       }
+
       .btn-primary {
-        background-color: #764ba2;
+        background-color: #00796b;
         border: none;
         font-weight: 600;
         padding: 0.75rem;
         transition: background-color 0.3s ease;
       }
+
       .btn-primary:hover {
-        background-color: #5a3589;
+        background-color: #00594c;
       }
+
       .form-text {
         font-size: 0.9rem;
         color: #6c757d;
       }
     </style>
   </head>
+
   <body>
+    <!-- Navbar -->
+    {% comment %}
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Finance Tracker</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon text-light"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/accounts/register">Sign In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/accounts/login">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Logout</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Info</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% endcomment %}
+
+    <!-- Login Card -->
     <div class="card shadow-sm">
       <h1>Login</h1>
       <form method="post" action="{% url 'login' %}" novalidate>
@@ -89,18 +167,6 @@
           />
         </div>
 
-        <!-- Remember Me -->
-        <div class="mb-3 form-check">
-          <input
-            type="checkbox"
-            class="form-check-input"
-            id="id_remember"
-            name="remember"
-            required
-          />
-          <label class="form-check-label" for="id_remember">Remember Me</label>
-        </div>
-
         <button type="submit" class="btn btn-primary w-100">Login</button>
 
         <div class="text-center mt-3">
@@ -114,7 +180,7 @@
       </form>
     </div>
 
-    <!-- Bootstrap JS Bundle -->
+    <!-- Bootstrap JS -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
       crossorigin="anonymous"

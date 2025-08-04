@@ -3,11 +3,13 @@ from django.http  import HttpRequest
 from django.views import View
 from .forms import RegisterForm
 from django.contrib.auth import login
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-def Home(request):
-    return render(request,'finance/home.html')
-
+class Home(LoginRequiredMixin,View):
+    def get(self,request,*args,**kwargs):
+        return render(request,'finance/home.html')
+    
 
 
 class RegisterView(View):
@@ -24,3 +26,7 @@ class RegisterView(View):
             return redirect('login')
             
         return render(request, 'finance/register.html', {'form': form})
+    
+
+
+
