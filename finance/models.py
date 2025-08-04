@@ -14,17 +14,18 @@ class Transaction(models.Model):
     transaction_amount = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return self.transaction_titleTran
+        return self.transaction_title
     
 
 class Goal(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE)
-    name=models.CharField(max_length=100)
-    target_amount=models.DecimalField(max_digits=10, decimal_places=2)
-    deadline=models.DateField()
+    goal_name=models.CharField(max_length=100)
+    goal_target_amount=models.DecimalField(max_digits=10, decimal_places=2)
+    goal_deadline=models.DateField()
 
 
     def __str__(self):
-        return self.name
+        return self.goal_name
+    
     
 

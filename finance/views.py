@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http  import HttpRequest
 from django.views import View
-from .forms import RegisterForm,TransactionForm,Transaction
+from .forms import RegisterForm,TransactionForm,Transaction,Goal,GoalsForm
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -27,6 +27,34 @@ class RegisterView(View):
             
         return render(request, 'finance/register.html', {'form': form})
     
+
+
+class GoalCreateView(LoginRequiredMixin,View):
+    def get(self,request,*args,**kwargs):
+        form=GoalsForm()
+        return render(request,'finance/goal_form.html',{'form':form})
+    
+
+    def post(self,request,*args,**kwargs):
+        form=GoalsForm(request.POST) # to get form
+        if form.is_valid():
+            Goal = form.save(commit=False)
+            Goal.user = request.user  
+            Goal.save()
+            return redirect('goal_add')
+            
+        return render(request, 'finance/goal_form.html', {'form': form})
+    
+
+class GoalListView(LoginRequiredMixin,View):
+    def get(self,request,*args,**kwargs):
+        goal=Goal.objects.filter(user=request.user)
+        return render(request,'finance/goal_list.html',{'goals':goal})
+    
+
+
+
+
 
 
 
