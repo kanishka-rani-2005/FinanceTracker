@@ -4,11 +4,34 @@ from django.views import View
 from .forms import RegisterForm,TransactionForm,Transaction,Goal,GoalsForm
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Sum
 
 
 class Home(LoginRequiredMixin,View):
     def get(self,request,*args,**kwargs):
-        return render(request,'finance/home.html')
+        transaction=Transaction.objects.filter(user=request.user)
+        goal=Goal.objects.filter(user=request.user)
+
+        total_income = Transaction.objects.filter(
+            user=request.user, transaction_type='Income'
+        ).aggregate(total=Sum('transaction_amount'))['total'] or 0
+
+        total_expenses = Transaction.objects.filter(
+            user=request.user, transaction_type='Expense'
+        ).aggregate(total=Sum('transaction_amount'))['total'] or 0
+        
+        net_savings=total_income-total_expenses
+
+        context={
+            'transaction':transaction,
+            'goal':goal,
+            'total_income':total_income,
+            'total_expenses':total_expenses,
+            'net_saving':net_savings
+
+        }
+
+        return render(request,'finance/home.html',context=context)
     
 
 
