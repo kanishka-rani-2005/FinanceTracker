@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'finance.apps.FinanceConfig',
+   
 ]
 
 MIDDLEWARE = [
@@ -50,11 +52,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "FinanceTracker.urls"
-
+import os
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR,'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -116,6 +118,12 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
+STATICFILES_DIR=[
+    os.path.join(BASE_DIR,'static'),
+]
+
+
+LOGIN_REDIRECT_URL = '/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
