@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'finance.apps.FinanceConfig',
     'widget_tweaks',   
+    'import_export'
    
 ]
 

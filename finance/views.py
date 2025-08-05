@@ -1,11 +1,11 @@
 from django.shortcuts import render,redirect
-from django.http  import HttpRequest
+from django.http  import HttpRequest,HttpResponse
 from django.views import View
 from .forms import RegisterForm,TransactionForm,Transaction,Goal,GoalsForm
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum
-
+from .admin import TransactionAdmin,TransactionResource
 
 class Home(LoginRequiredMixin,View):
     def get(self,request,*args,**kwargs):
@@ -123,4 +123,18 @@ class   TransactionListView(LoginRequiredMixin,View):
     def get(self,request,*args,**kwargs):
         transaction=Transaction.objects.filter(user=request.user)
         return render(request,'finance/transaction_list.html',{'transactions':transaction})
+    
+
+
+def export_transactions(request):
+    user=Transaction.objects.filter(user=request.user)
+
+    transaction_resource=TransactionResource()
+    dataset=transaction_resource.export(queryset=user)
+    
+    excel_data=dataset.export('csv')
+    response=HttpResponse(excel_data, content_type='text/csv')
+    response['Content-Disposition']='attachment; filename="transactions.csv"'
+    return response
+
     

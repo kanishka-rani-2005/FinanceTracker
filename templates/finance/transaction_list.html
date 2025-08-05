@@ -92,8 +92,10 @@
       <p class="text-center text-muted">No transactions found.</p>
     {% endif %}
 
-    <div class="text-end mt-3">
+    <!-- Bottom Buttons -->
+    <div class="d-flex justify-content-end gap-2 mt-4">
       <a href="/" class="btn btn-primary">Back to Home</a>
+      <a href="{% url 'generate_report' %}" class="btn btn-primary">Generate Report</a>
     </div>
   </div>
 
