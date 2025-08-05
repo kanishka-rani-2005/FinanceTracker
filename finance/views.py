@@ -22,14 +22,34 @@ class Home(LoginRequiredMixin,View):
         
         net_savings=total_income-total_expenses
 
+        remaining_savings=net_savings
+        goal_progress = []
+        for g in goal:
+            if remaining_savings >=g.goal_target_amount:
+                goal_progress.append({'goal':g,'progress':100})
+                remaining_savings-=g.goal_target_amount
+            elif remaining_savings>0:
+                progress=(remaining_savings/g.goal_target_amount)*100
+                goal_progress.append({"goal":g,"progress":progress})
+                remaining_savings=0
+            else:
+                goal_progress.append({'goal':g,'progress':0})
+
+
+
+
+            
         context={
             'transaction':transaction,
             'goal':goal,
             'total_income':total_income,
             'total_expenses':total_expenses,
-            'net_saving':net_savings
+            'net_saving':net_savings,
+            'goal_progress':goal_progress
 
         }
+        print("Goal:", g.goal_name)
+        # print("Saved:", saved_amount)
 
         return render(request,'finance/home.html',context=context)
     
