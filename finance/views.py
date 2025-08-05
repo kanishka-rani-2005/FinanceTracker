@@ -50,7 +50,7 @@ class Home(LoginRequiredMixin,View):
             'goal_progress':goal_progress
 
         }
-        print("Goal:", g.goal_name)
+        # print("Goal:", g.goal_name)
         # print("Saved:", saved_amount)
 
         return render(request,'finance/home.html',context=context)
