@@ -77,6 +77,30 @@ python manage.py runserver
 ##Visit http://127.0.0.1:8000/ in your browser to start using the app.
 
 
+## 📸 Demo Screenshots
+
+### 🏠 Dashboard View
+![Dashboard](DEMO_Images/i1.png)
+
+### ➕ Add Transaction
+![Add Transaction](DEMO_Images/i2.png)
+
+### 📋 Transaction List
+![Transaction List](DEMO_Images/i3.png)
+
+### 🎯 Add Goal
+![Add Goal](DEMO_Images/i4.png)
+
+### 📈 Goal Progress View
+![Goal Progress](DEMO_Images/i5.png)
+
+### 📑 Register Page
+![Register Page](DEMO_Images/i6.png)
+
+### 🔐 Login Page
+![Login Page](DEMO_Images/i7.png)
+
+
 ## 📌 Tech Stack
 
 Framework: Django
