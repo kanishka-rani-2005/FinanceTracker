@@ -91,14 +91,14 @@ python manage.py runserver
 ### 🎯 Add Goal
 ![Add Goal](DEMO_Images/i4.png)
 
-### 📈 Goal Progress View
+### 📈 Goal List View
 ![Goal Progress](DEMO_Images/i5.png)
 
-### 📑 Register Page
-![Register Page](DEMO_Images/i6.png)
+### 📑 Login Page
+![Login Page](DEMO_Images/i6.png)
 
-### 🔐 Login Page
-![Login Page](DEMO_Images/i7.png)
+### 🔐 Register Page
+![Register Page](DEMO_Images/i7.png)
 
 
 ## 📌 Tech Stack
