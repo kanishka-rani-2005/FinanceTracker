@@ -1,2 +1,5 @@
-django
-import-export
+Django>=4.2,<5.0
+django-import-export>=3.3.0
+django-widget-tweaks>=1.4.12
+gunicorn
+whitenoise  #For serving static files in production
