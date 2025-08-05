@@ -6,6 +6,8 @@ from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Sum
 from .admin import TransactionAdmin,TransactionResource
+from django.contrib import messages
+
 
 class Home(LoginRequiredMixin,View):
     def get(self,request,*args,**kwargs):
@@ -66,6 +68,7 @@ class RegisterView(View):
         if form.is_valid():
             user=form.save()
             login(request,user)
+            messages.success(request,'Account Created Successfully.')
             return redirect('login')
             
         return render(request, 'finance/register.html', {'form': form})
