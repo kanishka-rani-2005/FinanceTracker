@@ -73,7 +73,7 @@ python manage.py runserver
 
 ```
 
-##Deployed Link
+##   Deployed Link
 #### Visit (https://financetracker-4-97xr.onrender.com/) to start using the app.
 
 
