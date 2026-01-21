@@ -114,17 +114,28 @@ USE_I18N = True
 
 USE_TZ = True
 
+import os
+from pathlib import Path
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
+# ... existing code ...
 
-STATIC_URL = "static/"
+STATIC_URL = 'static/'
 
-STATICFILES_DIR=[
-    os.path.join(BASE_DIR,'static'),
+# Add this line to tell Django where to collect files for production
+STATIC_ROOT = os.path.join(BASE_Path, 'staticfiles') 
+
+# Optional: if you have a local static folder in your project
+STATICFILES_DIRS = [
+    os.path.join(BASE_Path, 'static'),
 ]
-
-
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # MUST be directly below SecurityMiddleware
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    # ...
+]
+# Enable WhiteNoise for serving static files in production
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
 
