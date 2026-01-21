@@ -73,8 +73,8 @@ python manage.py runserver
 
 ```
 
-
-#### Visit http://127.0.0.1:8000/ in your browser to start using the app.
+##Deployed Link
+#### Visit (https://financetracker-4-97xr.onrender.com/) to start using the app.
 
 
 ## 📸 Demo Screenshots
