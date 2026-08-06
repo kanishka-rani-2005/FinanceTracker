@@ -113,7 +113,7 @@ Database: SQLite (default), easily switchable to PostgreSQL or MySQL
 
 Auth: Django built-in authentication
 
-Hosting: Not yet deployed (Can be hosted on Heroku, Railway, Render, etc.)
+Hosting: Deployed On Render
 
 ## 👩‍💻 Author
 
